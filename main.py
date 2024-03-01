@@ -8,13 +8,13 @@ import pandas as pd
 from datetime import datetime
 from time import sleep
 
+companys = ['PETR3.SA','MGLU3.SA','VIVT3.SA']
 
-def get_data():
+def get_data(companys:list):
     
 
     options = Options()
     options.add_argument('--headless')
-    companys = ['PETR3.SA','MGLU3.SA','VIVT3.SA']
     valores = list()
     data_hora = list()
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
@@ -48,5 +48,5 @@ def convert_to_excel(dados: dict, file_name:str):
     df_companys.to_excel(f'./{file_name}.xlsx')
 
 
-data_company = get_data()
+data_company = get_data(companys)
 convert_to_excel(data_company,"company")
